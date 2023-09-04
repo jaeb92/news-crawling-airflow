@@ -1,0 +1,66 @@
+[2023-09-01T06:52:34.380+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bash_test.international scheduled__2023-08-31T06:52:00+00:00 [queued]>
+[2023-09-01T06:52:34.446+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bash_test.international scheduled__2023-08-31T06:52:00+00:00 [queued]>
+[2023-09-01T06:52:34.449+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2023-09-01T06:52:34.510+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): international> on 2023-08-31 06:52:00+00:00
+[2023-09-01T06:52:34.570+0000] {standard_task_runner.py:57} INFO - Started process 24195 to run task
+[2023-09-01T06:52:34.576+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'bash_test', 'international', 'scheduled__2023-08-31T06:52:00+00:00', '--job-id', '64', '--raw', '--subdir', 'DAGS_FOLDER/test_dags2.py', '--cfg-path', '/tmp/tmpm1qk_mct']
+[2023-09-01T06:52:34.592+0000] {standard_task_runner.py:85} INFO - Job 64: Subtask international
+[2023-09-01T06:52:34.724+0000] {task_command.py:415} INFO - Running <TaskInstance: bash_test.international scheduled__2023-08-31T06:52:00+00:00 [running]> on host 8ef33824b8b6
+[2023-09-01T06:52:35.087+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='bash_test' AIRFLOW_CTX_TASK_ID='international' AIRFLOW_CTX_EXECUTION_DATE='2023-08-31T06:52:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-08-31T06:52:00+00:00'
+[2023-09-01T06:52:35.111+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2023-09-01T06:52:35.116+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'cd /opt/***/ && python src/crawling.py -s hankook -c international -d 20230831']
+[2023-09-01T06:52:35.169+0000] {subprocess.py:86} INFO - Output:
+[2023-09-01T06:55:01.737+0000] {subprocess.py:93} INFO - World ['HD01', 'HD02', 'HD03', 'HD04', 'HD05', 'HD99'] 20230831
+[2023-09-01T06:55:01.810+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2023-09-01T06:55:01.822+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/connector.py", line 1155, in _create_direct_connection
+[2023-09-01T06:55:01.832+0000] {subprocess.py:93} INFO -     hosts = await asyncio.shield(host_resolved)
+[2023-09-01T06:55:01.849+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/connector.py", line 874, in _resolve_host
+[2023-09-01T06:55:01.884+0000] {subprocess.py:93} INFO -     addrs = await self._resolver.resolve(host, port, family=self._family)
+[2023-09-01T06:55:01.916+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/resolver.py", line 33, in resolve
+[2023-09-01T06:55:01.928+0000] {subprocess.py:93} INFO -     infos = await self._loop.getaddrinfo(
+[2023-09-01T06:55:01.945+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/asyncio/base_events.py", line 825, in getaddrinfo
+[2023-09-01T06:55:01.952+0000] {subprocess.py:93} INFO -     return await self.run_in_executor(
+[2023-09-01T06:55:01.955+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+[2023-09-01T06:55:01.959+0000] {subprocess.py:93} INFO -     result = self.fn(*self.args, **self.kwargs)
+[2023-09-01T06:55:01.980+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/socket.py", line 918, in getaddrinfo
+[2023-09-01T06:55:01.982+0000] {subprocess.py:93} INFO -     for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+[2023-09-01T06:55:02.047+0000] {subprocess.py:93} INFO - socket.gaierror: [Errno -3] Temporary failure in name resolution
+[2023-09-01T06:55:02.079+0000] {subprocess.py:93} INFO - 
+[2023-09-01T06:55:02.083+0000] {subprocess.py:93} INFO - The above exception was the direct cause of the following exception:
+[2023-09-01T06:55:02.091+0000] {subprocess.py:93} INFO - 
+[2023-09-01T06:55:02.094+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2023-09-01T06:55:02.115+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 135, in <module>
+[2023-09-01T06:55:02.134+0000] {subprocess.py:93} INFO -     main()
+[2023-09-01T06:55:02.146+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 126, in main
+[2023-09-01T06:55:02.149+0000] {subprocess.py:93} INFO -     loop.run_until_complete(run(site, main_category, sub_category, date))
+[2023-09-01T06:55:02.159+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+[2023-09-01T06:55:02.165+0000] {subprocess.py:93} INFO -     return future.result()
+[2023-09-01T06:55:02.170+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 92, in run
+[2023-09-01T06:55:02.175+0000] {subprocess.py:93} INFO -     await asyncio.gather(*futures)
+[2023-09-01T06:55:02.178+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 69, in get_news
+[2023-09-01T06:55:02.182+0000] {subprocess.py:93} INFO -     async for html in detail_html:
+[2023-09-01T06:55:02.188+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 66, in <genexpr>
+[2023-09-01T06:55:02.203+0000] {subprocess.py:93} INFO -     detail_html = (await get_html(url) for url in news_detail_urls)
+[2023-09-01T06:55:02.212+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 32, in get_html
+[2023-09-01T06:55:02.223+0000] {subprocess.py:93} INFO -     async with session.get(url, headers={'User-Agent':'Mozilla/5.0'}) as resp:
+[2023-09-01T06:55:02.246+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/client.py", line 1141, in __aenter__
+[2023-09-01T06:55:02.256+0000] {subprocess.py:93} INFO -     self._resp = await self._coro
+[2023-09-01T06:55:02.268+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/client.py", line 536, in _request
+[2023-09-01T06:55:02.270+0000] {subprocess.py:93} INFO -     conn = await self._connector.connect(
+[2023-09-01T06:55:02.287+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/connector.py", line 540, in connect
+[2023-09-01T06:55:02.298+0000] {subprocess.py:93} INFO -     proto = await self._create_connection(req, traces, timeout)
+[2023-09-01T06:55:02.301+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/connector.py", line 901, in _create_connection
+[2023-09-01T06:55:02.310+0000] {subprocess.py:93} INFO -     _, proto = await self._create_direct_connection(req, traces, timeout)
+[2023-09-01T06:55:02.312+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/connector.py", line 1169, in _create_direct_connection
+[2023-09-01T06:55:02.314+0000] {subprocess.py:93} INFO -     raise ClientConnectorError(req.connection_key, exc) from exc
+[2023-09-01T06:55:02.323+0000] {subprocess.py:93} INFO - aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host www.hankookilbo.com:443 ssl:default [Temporary failure in name resolution]
+[2023-09-01T06:55:06.196+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2023-09-01T06:55:06.427+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2023-09-01T06:55:06.565+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=bash_test, task_id=international, execution_date=20230831T065200, start_date=20230901T065234, end_date=20230901T065506
+[2023-09-01T06:55:06.805+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 64 for task international (Bash command failed. The command returned a non-zero exit code 1.; 24195)
+[2023-09-01T06:55:07.008+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2023-09-01T06:55:07.230+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

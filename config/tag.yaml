@@ -1,0 +1,208 @@
+chosun:
+  list:
+    tag: div
+    class: story-card
+  list_title:
+    tag: a
+    class: story-card__headline
+  detail_url:
+    tag: a
+    attrs: href
+  title: 
+    tag: h1
+    class: article-header__headline
+  contents:
+    tag: section
+    class: article-body
+  author:
+    tag: span
+    class: article-byline__author
+  date:
+    tag: span
+    class: inputDate
+  image:
+    tag: img
+    class: box--display-block cover
+    
+joongang:
+  list:
+    tag: ul
+    class: story_list
+  list_title:
+    tag: h2
+    class: headline
+  detail_url:
+    tag: a
+    attrs: href
+  title: 
+    tag: h1
+    class: headline
+  contents:
+    tag: div
+    class: article_body fs3
+  author:
+    tag: div
+    class: byline
+  date:
+    tag: p
+    class: date
+  image:
+    tag: div
+    class: ab_photo photo_center
+  
+donga:
+  list:
+    tag: div
+    class: etcCon etcPage
+  list_title:
+    tag: span
+    class: tit
+  detail_url:
+    tag: a
+    attrs: href
+  title:
+    tag: h1 
+    class: title
+  contents:
+    tag: div
+    class: article_txt
+  author:
+    tag: span
+    class: name
+  date:
+    tag: span
+    class: date01
+  image:
+    tag: div
+    class: articlePhotoC
+
+seoul:
+  list:
+    tag: div
+    class: S20_list_area 
+  list_title:
+    tag: div
+    class: tit lineclamp2
+  detail_url:
+    tag: a
+    attrs: href
+  title:
+    tag: h1 
+    class: atit2
+  contents:
+    tag: div
+    class: S20_v_article
+  author:
+    tag: span
+    class: name
+  date:
+    tag: span
+    class: w_date
+  image:
+    tag: div
+    class: v_photo
+
+khan:
+  list:
+    tag: div
+    class: main-list-wrap
+  list_title:
+    tag: h1
+    class: atit2
+  detail_url:
+    tag: a
+    attrs: href
+  title: 
+    tag: h1
+    class: headline
+  contents:
+    tag: div
+    class: art_body
+  author:
+    tag: span
+    class: author
+  date:
+    tag: div
+    class: byline
+  image:
+    tag: div
+    class: art_photo_wrap
+
+maeil:
+  list:
+    tag: ul
+    class: wcms_outline
+  list_title:
+    tag: p
+    class: title
+  detail_url:
+    tag: a
+    attrs: href
+  title: 
+    tag: p
+    class: title
+  contents:
+    tag: div
+    class: article_content
+  author:
+    tag: span
+    class: name
+  date:
+    tag: span
+    class: date
+  image:
+    tag: div
+    class: art_photo_wrap
+  
+hani:
+  list:
+    tag: div
+    class: section-list-area photo-view3
+  list_title:
+    tag: h4
+    class: article-title
+  detail_url:
+    tag: a
+    attrs: href
+  title: 
+    tag: span
+    class: title
+  contents:
+    tag: div
+    class: article-text
+  author:
+    tag: div
+    class: kiza-info
+  date:
+    tag: p
+    class: date-time
+  image:
+    tag: figure
+    class: img_center
+
+hankook:
+  list:
+    tag: ul
+    class: board-list column-3
+  list_title:
+    tag: h3
+    class: 
+  detail_url:
+    tag: a
+    attrs: href
+  title: 
+    tag: h2
+    class: title
+  contents:
+    tag: p
+    class: editor-p read
+  author:
+    tag: span
+    class: nm
+  date:
+    tag: dl
+    class: wrt-text
+  image:
+    tag: div
+    class: editor-img-box
+

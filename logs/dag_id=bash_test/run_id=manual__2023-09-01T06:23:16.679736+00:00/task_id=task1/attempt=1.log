@@ -1,0 +1,26 @@
+[2023-09-01T06:23:17.836+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bash_test.task1 manual__2023-09-01T06:23:16.679736+00:00 [queued]>
+[2023-09-01T06:23:17.853+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bash_test.task1 manual__2023-09-01T06:23:16.679736+00:00 [queued]>
+[2023-09-01T06:23:17.854+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2023-09-01T06:23:17.872+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): task1> on 2023-09-01 06:23:16.679736+00:00
+[2023-09-01T06:23:17.880+0000] {standard_task_runner.py:57} INFO - Started process 9405 to run task
+[2023-09-01T06:23:17.885+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'bash_test', 'task1', 'manual__2023-09-01T06:23:16.679736+00:00', '--job-id', '47', '--raw', '--subdir', 'DAGS_FOLDER/test_dags2.py', '--cfg-path', '/tmp/tmptxb3g16d']
+[2023-09-01T06:23:17.888+0000] {standard_task_runner.py:85} INFO - Job 47: Subtask task1
+[2023-09-01T06:23:17.959+0000] {task_command.py:415} INFO - Running <TaskInstance: bash_test.task1 manual__2023-09-01T06:23:16.679736+00:00 [running]> on host 8ef33824b8b6
+[2023-09-01T06:23:18.113+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='bash_test' AIRFLOW_CTX_TASK_ID='task1' AIRFLOW_CTX_EXECUTION_DATE='2023-09-01T06:23:16.679736+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-09-01T06:23:16.679736+00:00'
+[2023-09-01T06:23:18.119+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2023-09-01T06:23:18.123+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'cd /opt/***/ && python src/crawling.py -s hankook -c politics']
+[2023-09-01T06:23:18.149+0000] {subprocess.py:86} INFO - Output:
+[2023-09-01T06:23:19.277+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2023-09-01T06:23:19.280+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 8, in <module>
+[2023-09-01T06:23:19.283+0000] {subprocess.py:93} INFO -     from db.dbconn import Database
+[2023-09-01T06:23:19.287+0000] {subprocess.py:93} INFO - ModuleNotFoundError: No module named 'db'
+[2023-09-01T06:23:19.333+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2023-09-01T06:23:19.359+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2023-09-01T06:23:19.368+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=bash_test, task_id=task1, execution_date=20230901T062316, start_date=20230901T062317, end_date=20230901T062319
+[2023-09-01T06:23:19.390+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 47 for task task1 (Bash command failed. The command returned a non-zero exit code 1.; 9405)
+[2023-09-01T06:23:19.430+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2023-09-01T06:23:19.455+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

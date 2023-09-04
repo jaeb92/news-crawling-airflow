@@ -1,0 +1,18 @@
+[2023-09-01T06:59:01.833+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bash_test.politics scheduled__2023-08-31T06:52:00+00:00 [queued]>
+[2023-09-01T06:59:01.848+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bash_test.politics scheduled__2023-08-31T06:52:00+00:00 [queued]>
+[2023-09-01T06:59:01.850+0000] {taskinstance.py:1361} INFO - Starting attempt 3 of 3
+[2023-09-01T06:59:01.871+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): politics> on 2023-08-31 06:52:00+00:00
+[2023-09-01T06:59:01.878+0000] {standard_task_runner.py:57} INFO - Started process 25740 to run task
+[2023-09-01T06:59:01.885+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'bash_test', 'politics', 'scheduled__2023-08-31T06:52:00+00:00', '--job-id', '75', '--raw', '--subdir', 'DAGS_FOLDER/test_dags2.py', '--cfg-path', '/tmp/tmp5swu9vuc']
+[2023-09-01T06:59:01.888+0000] {standard_task_runner.py:85} INFO - Job 75: Subtask politics
+[2023-09-01T06:59:01.964+0000] {task_command.py:415} INFO - Running <TaskInstance: bash_test.politics scheduled__2023-08-31T06:52:00+00:00 [running]> on host 8ef33824b8b6
+[2023-09-01T06:59:02.081+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='bash_test' AIRFLOW_CTX_TASK_ID='politics' AIRFLOW_CTX_EXECUTION_DATE='2023-08-31T06:52:00+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-08-31T06:52:00+00:00'
+[2023-09-01T06:59:02.086+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2023-09-01T06:59:02.088+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'cd /opt/***/ && python src/crawling.py -s hankook -c politics -d 20230831']
+[2023-09-01T06:59:02.108+0000] {subprocess.py:86} INFO - Output:
+[2023-09-01T06:59:12.760+0000] {subprocess.py:93} INFO - Politics ['HA01', 'HA02', 'HA03', 'HA04', 'HA99'] 20230831
+[2023-09-01T06:59:12.770+0000] {subprocess.py:93} INFO - running time: 9.4849s
+[2023-09-01T06:59:13.009+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2023-09-01T06:59:13.122+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=bash_test, task_id=politics, execution_date=20230831T065200, start_date=20230901T065901, end_date=20230901T065913
+[2023-09-01T06:59:13.186+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-09-01T06:59:13.241+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check

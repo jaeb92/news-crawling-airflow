@@ -1,0 +1,46 @@
+hankook:
+  politics:
+    Politics: [HA01,HA02, HA03, HA04, HA99]
+  economy:
+    Economy: [HB01, HB02, HB03, HB04, HB05, HB99]
+  international:
+    World: [HD01, HD02, HD03, HD04, HD05, HD99]
+  society:
+    Society: [HC01, HC02, HC03, HC04, HC05, HC06, HC99]
+  culture:
+    Culture: [HE01, HE02, HE99]
+  entertainment:
+    Culture: [HF99, HF02, HF03, HF04, HF05, HF06]
+  sports:
+    Sports: [HG01, HG02, HG03, HG04, HG05, HG06, HG99]
+
+joongang:
+  politics:
+    politics: [general, assemgov, bluehouse, deplomacy, nk, northkorea]
+  economy:
+    money: [general, economicpolicy, industry, finance, realestate, science, labor, globaleconomy]
+  international:
+    world: [general, northame, china, japan, eu, etc]
+  society:
+    society: [general, accident, lawa, education, welfare, helathcare, environment, traffic, national]
+  culture:
+    culture: [general, book, exhibition, performance, song, movie, broadcast]
+  entertainment:
+  sports:
+    sports: [general, baseball, soccer, golf, basketvolley]
+
+donga:
+  politics:
+    Politics: [List, CWD, NA, NK, Dip, Admin]
+  economy:
+    Economy: [List, CEO, RE, Money, It/List, Car]
+  international:
+    Inter: [List, Asia, USA, EU, China, Japan]
+  society:
+    Society: [List, Series/70030000000919, Series/70030000000923, Edu, Labor, Event]
+  culture:
+    Culture: [List, Liter, Health, Food, Fashion, Travel]
+  entertainment:
+    Entertainment: [List, TV, Movie, Music]
+  sports:
+    Sports: [List, Base, Foot, Golf, Basket]

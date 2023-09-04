@@ -1,0 +1,18 @@
+[2023-09-02T09:18:06.934+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bash_test.international manual__2023-09-02T09:15:43.583597+00:00 [queued]>
+[2023-09-02T09:18:06.958+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bash_test.international manual__2023-09-02T09:15:43.583597+00:00 [queued]>
+[2023-09-02T09:18:06.960+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2023-09-02T09:18:06.988+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): international> on 2023-09-02 09:15:43.583597+00:00
+[2023-09-02T09:18:06.997+0000] {standard_task_runner.py:57} INFO - Started process 36923 to run task
+[2023-09-02T09:18:07.009+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'bash_test', 'international', 'manual__2023-09-02T09:15:43.583597+00:00', '--job-id', '97', '--raw', '--subdir', 'DAGS_FOLDER/test_dags2.py', '--cfg-path', '/tmp/tmp8s_p_f26']
+[2023-09-02T09:18:07.016+0000] {standard_task_runner.py:85} INFO - Job 97: Subtask international
+[2023-09-02T09:18:07.122+0000] {task_command.py:415} INFO - Running <TaskInstance: bash_test.international manual__2023-09-02T09:15:43.583597+00:00 [running]> on host 8ef33824b8b6
+[2023-09-02T09:18:07.313+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='bash_test' AIRFLOW_CTX_TASK_ID='international' AIRFLOW_CTX_EXECUTION_DATE='2023-09-02T09:15:43.583597+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-09-02T09:15:43.583597+00:00'
+[2023-09-02T09:18:07.318+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2023-09-02T09:18:07.323+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'cd /opt/***/ && python src/crawling.py -s hankook -c international -d 20230901']
+[2023-09-02T09:18:07.349+0000] {subprocess.py:86} INFO - Output:
+[2023-09-02T09:19:03.396+0000] {subprocess.py:93} INFO - World ['HD01', 'HD02', 'HD03', 'HD04', 'HD05', 'HD99'] 20230901
+[2023-09-02T09:19:03.400+0000] {subprocess.py:93} INFO - running time: 53.9464s
+[2023-09-02T09:19:03.555+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2023-09-02T09:19:03.608+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=bash_test, task_id=international, execution_date=20230902T091543, start_date=20230902T091806, end_date=20230902T091903
+[2023-09-02T09:19:03.679+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-09-02T09:19:03.730+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check

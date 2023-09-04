@@ -1,0 +1,24 @@
+chosun: 
+  base: https://www.chosun.com
+  list_page_endpoint: 
+joongang: 
+  base: https://www.joongang.co.kr
+  list_page_endpoint:
+donga: 
+  base: https://www.donga.com
+  list_page_endpoint: /news
+seoul: 
+  base: https://www.seoul.co.kr
+  list_page_endpoint: /news/newsList.php?section=
+khan: 
+  base: https://www.khan.co.kr
+  list_page_endpoint: 
+maeil: 
+  base: https://news.imaeil.com
+  list_page_endpoint: 
+hani: 
+  base: https://www.hani.co.kr
+  list_page_endpoint: /arti
+hankook:
+  base: https://hankookilbo.com
+  list_page_endpoint: /News

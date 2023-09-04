@@ -1,0 +1,167 @@
+[2023-09-01T06:56:55.713+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bash_test.sports scheduled__2023-08-31T06:52:00+00:00 [queued]>
+[2023-09-01T06:56:55.784+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bash_test.sports scheduled__2023-08-31T06:52:00+00:00 [queued]>
+[2023-09-01T06:56:55.789+0000] {taskinstance.py:1361} INFO - Starting attempt 2 of 2
+[2023-09-01T06:56:55.861+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): sports> on 2023-08-31 06:52:00+00:00
+[2023-09-01T06:56:55.896+0000] {standard_task_runner.py:57} INFO - Started process 25122 to run task
+[2023-09-01T06:56:55.896+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'bash_test', 'sports', 'scheduled__2023-08-31T06:52:00+00:00', '--job-id', '74', '--raw', '--subdir', 'DAGS_FOLDER/test_dags2.py', '--cfg-path', '/tmp/tmpnd41xmi7']
+[2023-09-01T06:56:55.961+0000] {standard_task_runner.py:85} INFO - Job 74: Subtask sports
+[2023-09-01T06:56:56.453+0000] {task_command.py:415} INFO - Running <TaskInstance: bash_test.sports scheduled__2023-08-31T06:52:00+00:00 [running]> on host 8ef33824b8b6
+[2023-09-01T06:56:56.901+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='bash_test' AIRFLOW_CTX_TASK_ID='sports' AIRFLOW_CTX_EXECUTION_DATE='2023-08-31T06:52:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-08-31T06:52:00+00:00'
+[2023-09-01T06:56:56.911+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2023-09-01T06:56:56.920+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'cd /opt/***/ && python src/crawling.py -s hankook -c sports -d 20230831']
+[2023-09-01T06:56:57.019+0000] {subprocess.py:86} INFO - Output:
+[2023-09-01T06:58:05.486+0000] {subprocess.py:93} INFO - Sports ['HG01', 'HG02', 'HG03', 'HG04', 'HG05', 'HG06', 'HG99'] 20230831
+[2023-09-01T06:58:06.978+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2023-09-01T06:58:06.985+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/connector.py", line 1155, in _create_direct_connection
+[2023-09-01T06:58:07.121+0000] {subprocess.py:93} INFO -     hosts = await asyncio.shield(host_resolved)
+[2023-09-01T06:58:07.126+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/connector.py", line 874, in _resolve_host
+[2023-09-01T06:58:07.138+0000] {subprocess.py:93} INFO -     addrs = await self._resolver.resolve(host, port, family=self._family)
+[2023-09-01T06:58:07.183+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/resolver.py", line 33, in resolve
+[2023-09-01T06:58:07.185+0000] {subprocess.py:93} INFO -     infos = await self._loop.getaddrinfo(
+[2023-09-01T06:58:07.208+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/asyncio/base_events.py", line 825, in getaddrinfo
+[2023-09-01T06:58:07.232+0000] {subprocess.py:93} INFO -     return await self.run_in_executor(
+[2023-09-01T06:58:07.274+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+[2023-09-01T06:58:07.333+0000] {subprocess.py:93} INFO -     result = self.fn(*self.args, **self.kwargs)
+[2023-09-01T06:58:06.647+0000] {job.py:219} ERROR - Job heartbeat got an exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/jobs/job.py", line 215, in heartbeat
+    heartbeat_callback(session)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 74, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/jobs/local_task_job_runner.py", line 246, in heartbeat_callback
+    self.task_instance.refresh_from_db()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 77, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 866, in refresh_from_db
+    ti = qry.one_or_none()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2850, in one_or_none
+    return self._iter().one_or_none()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/future/engine.py", line 406, in connect
+    return super(Engine, self).connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2023-09-01T06:58:07.452+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/socket.py", line 918, in getaddrinfo
+[2023-09-01T06:58:07.468+0000] {subprocess.py:93} INFO -     for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+[2023-09-01T06:58:07.475+0000] {subprocess.py:93} INFO - socket.gaierror: [Errno -3] Temporary failure in name resolution
+[2023-09-01T06:58:07.477+0000] {subprocess.py:93} INFO - 
+[2023-09-01T06:58:07.493+0000] {subprocess.py:93} INFO - The above exception was the direct cause of the following exception:
+[2023-09-01T06:58:07.505+0000] {subprocess.py:93} INFO - 
+[2023-09-01T06:58:07.518+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2023-09-01T06:58:07.537+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 135, in <module>
+[2023-09-01T06:58:07.543+0000] {subprocess.py:93} INFO -     main()
+[2023-09-01T06:58:07.544+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 126, in main
+[2023-09-01T06:58:07.554+0000] {subprocess.py:93} INFO -     loop.run_until_complete(run(site, main_category, sub_category, date))
+[2023-09-01T06:58:07.559+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+[2023-09-01T06:58:07.564+0000] {subprocess.py:93} INFO -     return future.result()
+[2023-09-01T06:58:07.586+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 92, in run
+[2023-09-01T06:58:07.602+0000] {subprocess.py:93} INFO -     await asyncio.gather(*futures)
+[2023-09-01T06:58:07.619+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 69, in get_news
+[2023-09-01T06:58:07.631+0000] {subprocess.py:93} INFO -     async for html in detail_html:
+[2023-09-01T06:58:07.636+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 66, in <genexpr>
+[2023-09-01T06:58:07.641+0000] {subprocess.py:93} INFO -     detail_html = (await get_html(url) for url in news_detail_urls)
+[2023-09-01T06:58:07.649+0000] {subprocess.py:93} INFO -   File "src/crawling.py", line 32, in get_html
+[2023-09-01T06:58:07.666+0000] {subprocess.py:93} INFO -     async with session.get(url, headers={'User-Agent':'Mozilla/5.0'}) as resp:
+[2023-09-01T06:58:07.694+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/client.py", line 1141, in __aenter__
+[2023-09-01T06:58:07.701+0000] {subprocess.py:93} INFO -     self._resp = await self._coro
+[2023-09-01T06:58:07.718+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/client.py", line 536, in _request
+[2023-09-01T06:58:07.730+0000] {subprocess.py:93} INFO -     conn = await self._connector.connect(
+[2023-09-01T06:58:07.736+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/connector.py", line 540, in connect
+[2023-09-01T06:58:07.748+0000] {subprocess.py:93} INFO -     proto = await self._create_connection(req, traces, timeout)
+[2023-09-01T06:58:07.770+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/connector.py", line 901, in _create_connection
+[2023-09-01T06:58:07.806+0000] {subprocess.py:93} INFO -     _, proto = await self._create_direct_connection(req, traces, timeout)
+[2023-09-01T06:58:07.810+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/aiohttp/connector.py", line 1169, in _create_direct_connection
+[2023-09-01T06:58:07.818+0000] {subprocess.py:93} INFO -     raise ClientConnectorError(req.connection_key, exc) from exc
+[2023-09-01T06:58:07.842+0000] {subprocess.py:93} INFO - aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host hankookilbo.com:443 ssl:default [Temporary failure in name resolution]
+[2023-09-01T06:58:09.768+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2023-09-01T06:58:09.957+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2023-09-01T06:58:10.016+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=bash_test, task_id=sports, execution_date=20230831T065200, start_date=20230901T065655, end_date=20230901T065810
+[2023-09-01T06:58:10.112+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 74 for task sports (Bash command failed. The command returned a non-zero exit code 1.; 25122)
+[2023-09-01T06:58:10.495+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2023-09-01T06:58:12.407+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
