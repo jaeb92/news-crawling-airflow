@@ -4,3 +4,5 @@
 # DS Store
 .DS_Store
 
+# logs
+[L|l]og*/
