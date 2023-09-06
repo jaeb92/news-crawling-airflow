@@ -12,8 +12,6 @@ from bs4 import BeautifulSoup
 from db.dbconn import Database
 
 main_url = 'https://hankookilbo.com'
-main_category = "Politics"
-subcategories = ["HA01","HA02","HA03","HA04","HA99"]
 db_columns = ['title', 'contents', 'author', 'date', 'main_category', 'sub_category', 'source']
 columns = ','.join(db_columns)
 table = 'news'
@@ -98,7 +96,6 @@ async def get_news(site: str, main_category: str, sub_category: str, search_date
                 'sub_category': sub_category,
                 'source': source
             })
-        print(news)
         await save(news)
     
     

@@ -4,10 +4,10 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 
-today = datetime.today() - timedelta(1)
-yesterday = datetime.strftime(today, '%Y%m%d')
-
 KST = pendulum.timezone("Asia/Seoul")
+
+today = datetime.now(KST)
+yesterday = datetime.strftime(today - timedelta(1), '%Y%m%d')
 
 with DAG(
     dag_id="crawling_news",
