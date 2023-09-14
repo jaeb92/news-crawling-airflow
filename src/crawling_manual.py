@@ -2,15 +2,13 @@ import re
 import sys
 sys.path.append('.')
 import time
-import json
 import yaml
-import traceback
 import aiohttp
-import argparse
 import asyncio
+import pandas as pd
+from datetime import datetime
 from bs4 import BeautifulSoup
 from db.dbconn import Database
-from kafka import KafkaProducer
 
 # 뉴스메인url
 main_url = 'https://hankookilbo.com'
@@ -20,14 +18,6 @@ news_columns = ','.join(news_columns)
 
 # db 테이블명
 table = 'news'
-
-producer = KafkaProducer(
-    bootstrap_servers=['kafka-1:9092','kafka-2:9092','kafka-3:9092'],
-    key_serializer=lambda x: json.dumps(x).encode('utf-8'),
-    value_serializer=lambda x : json.dumps(x).encode('utf-8'),
-    client_id='news_crawling_producer',
-)
-
 
 db = Database()
 async def save(table: str, columns: str, data: list) -> None:
@@ -45,7 +35,6 @@ async def save(table: str, columns: str, data: list) -> None:
     
     # bulk insert 수행
     db.insert_bulk(q=sql, arg=values)
-    
     
 def get_last_page_number(html: str) -> int:
     """
@@ -150,7 +139,7 @@ async def get_news(site: str, main_category: str, sub_category: str, search_date
     """
     
     # 뉴스 검색 url
-    search_url = f"{main_url}/News/{main_category}/{sub_category}?SortType=&SearchDate={search_date}&Page="
+    search_url = f"{main_url}/News/{main_category}/{sub_category}?SortType=&SearchDate={search_date}"
 
     # 뉴스정보 초기값 할당
     title = ''
@@ -161,23 +150,23 @@ async def get_news(site: str, main_category: str, sub_category: str, search_date
     
     # 뉴스리스트 html
     news_list_page_html = await get_html(search_url)
+    
     # 뉴스리스트 마지막 페이지 번호
     last_page_number = get_last_page_number(news_list_page_html)
-    # main_category - sub_category의 뉴스 건수
-    count = 0
-
+    
     # 뉴스페이지가 여러 개 존재할 수 있으므로 페이지 별로 크롤링 수행
+    count = 0
     for i in range(1, last_page_number+1):
         
         # 뉴스 검색 url에 페이지 번호 querystring을 추가해준다.
-        page_search_url = f"{search_url}{i}"
+        search_url += f'&Page={i}'
         
         # 페이지별 조회된 뉴스 리스트 html
-        news_list = await get_html(page_search_url)
+        news_list = await get_html(search_url)
         
         # 상세페이지 url
         news_detail_urls = await get_detail_url(news_list)
-
+        
         # 상세페이지 html
         detail_html = (await get_html(url) for url in news_detail_urls)
         news = []
@@ -188,16 +177,7 @@ async def get_news(site: str, main_category: str, sub_category: str, search_date
                 title = html.find('h2', 'title').text
                 # 기자이름
                 author = html.find('span', 'name')
-                
-                # 기자이름 태그가 없는 경우 존재함.
-                if author:
-                    try:
-                        # 볼드체로 된 이름 태그
-                        author = author.find('strong').text
-                    except Exception as e:
-                        # 일반텍스트로 된 이름 태그
-                        author = author.text
-                
+                author = author.find('strong').text
                 # 뉴스일자
                 date = html.find('dl', 'wrt-text').text
                 # 뉴스내용에 입력시간과 수정시간이 같이 추출되기때문에 '입력시간'만 뉴스일자로 사용하기 위함
@@ -205,44 +185,36 @@ async def get_news(site: str, main_category: str, sub_category: str, search_date
                     date = list(filter(lambda x: x, date.split('\n')))[1]
                 # 뉴스 본문
                 contents = ' '.join([tag.text for tag in html.find_all('p', 'editor-p')])
-                
-                value = {
+                # db에 저장하기 위해 뉴스내용을 딕셔너리 형태로 구성하고 조회된 모든 뉴스를 리스트에 담아서 반환하도록 함
+                news.append({
                     'title': title.strip(),
                     'contents': contents.strip(),
-                    'author': author,
+                    'author': author.strip(),
                     'date': date.strip(),
                     'main_category': main_category,
                     'sub_category': sub_category,
                     'source': source
-                }
-                # db에 저장하기 위해 뉴스내용을 딕셔너리 형태로 구성하고 조회된 모든 뉴스를 리스트에 담아서 반환하도록 함
-                news.append(value)                
-                # 뉴스 건수 카운트 증가
+                })
                 count += 1
-                # 카프카 토픽으로 크롤링한 뉴스 원본 전달
-                producer.send(topic='news.raw', value=value)
             except Exception as e:
-                traceback.print_exc()
                 pass
-                
-    #     try:
-    #         # 뉴스들에 대한 크롤링이 완료되면 리스트에 담긴 모든 뉴스를 bulk형태로 insert 수행함
-    #         await save(table='news', columns=news_columns, data=news)
-    #     except Exception as e:
-    #         print(e)
             
-    # # news건수 저장하기 위한 컬럼명, 데이터 셋
-    # news_insert_count_columns = 'main_category,sub_category,news_date,count'
-    # news_insert_count = [{
-    #     'main_category': main_category,
-    #     'sub_category': sub_category,
-    #     'news_date': date,
-    #     'count': count
-    # }]
-    # await save(table='news_insert_count', columns=news_insert_count_columns, data=news_insert_count)
-    # print(main_category, sub_category, count)
+        try:
+            # YYYYMMDD일자의 모든 뉴스들에 대한 크롤링이 완료되면 리스트에 담긴 모든 뉴스를 bulk형태로 insert 수행함
+            await save(table='news', columns=news_columns, data=news)
+        except Exception as e:
+            print(e)
+            
+    news_insert_count_columns = 'main_category,sub_category,news_date,count'
+    news_insert_count = [{
+        'main_category': main_category,
+        'sub_category': sub_category,
+        'news_date': search_date,
+        'count': count
+    }]
+    await save(table='news_insert_count', columns=news_insert_count_columns, data=news_insert_count)
+    print(main_category, sub_category, count)
 
-            
             
 async def run(site: str, main_category: str, sub_category: str, date: str) -> None:
     """
@@ -255,7 +227,8 @@ async def run(site: str, main_category: str, sub_category: str, date: str) -> No
         date (str): 뉴스 일자
     """
     futures = [asyncio.ensure_future(get_news(site=site, main_category=main_category, sub_category=sub, search_date=date)) for sub in sub_category]
-    await asyncio.gather(*futures)
+    result = await asyncio.gather(*futures)
+    return result
 
 
 def main() -> None:
@@ -266,58 +239,66 @@ def main() -> None:
         KeyError: 지원하지 않는 뉴스 사이트인 경우 에러 발생
         KeyError: 지원하지 않는 뉴스 카테고리인 경우 에러 발생
     """
-    # 프로그램 시작 시간
-    start = time.time()
     
     # 프로그램 실행에 필요한 인자생성
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-s', '--site', dest='site', help='ex. chosun, joonang, donga, seoul, khan, maeil, hani, hankook')
-    parser.add_argument('-c', '--category', dest='category', help='ex. politics, economy, international, society, culture, entertinament, sports')
-    parser.add_argument('-d', '--date', dest='date', help='ex. 20230901')
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument('-s', '--site', dest='site', help='ex. chosun, joonang, donga, seoul, khan, maeil, hani, hankook')
+    # parser.add_argument('-c', '--category', dest='category', help='ex. politics, economy, international, society, culture, entertinament, sports')
+    # parser.add_argument('-d', '--date', dest='date', help='ex. 20230901')
     
-    args = parser.parse_args()
+    # args = parser.parse_args()
     
-    # 뉴스사이트 
-    site = args.site
-    # 뉴스카테고리
-    category = args.category
-    # 뉴스일자
-    date = args.date
+    # # 뉴스사이트 
+    # site = args.site
+    # # 뉴스카테고리
+    # category = args.category
+    # # 뉴스일자
+    # date = args.date
     
+    
+    site = 'hankook'
+    date = pd.date_range(start='20230428', end='20230430')
+    date_list = list(map(lambda x: datetime.strftime(x, '%Y%m%d'), date))
+    category_list = ['politics', 'economy', 'international', 'society', 'culture', 'entertainment', 'sports']
+    
+
     # 카테고리별 상세카테고리가 정의되어 있는 yaml파일
     with open('config/category.yaml', 'r') as f:
         cate_config = yaml.load(f, Loader=yaml.FullLoader)
 
-    # 지원하지 않는 사이트이거나 오타인 경우 keyerror발생
-    if site is None:
-        raise KeyError(f"'site' is None")
+    # # 지원하지 않는 사이트이거나 오타인 경우 keyerror발생
+    # if site is None:
+    #     raise KeyError(f"'site' is None")
     
-    # 지원하지 않는 뉴스카테고리거나 오타인 경우 keyerror발생
-    if category is None:
-        raise KeyError(f"'category' is None")
-    
-    if category in cate_config[site]:
-        main_category = list(cate_config[site][category].keys())[0]
-        sub_category = cate_config[site][category][main_category]
-    else:
-        raise KeyError(f"expect 'politics', 'economy', 'international', 'society', 'culture', 'entertainment', 'sports', but got {category}")
-    
-    
-    print(date, main_category, '>>', sub_category)
+    # # 지원하지 않는 뉴스카테고리거나 오타인 경우 keyerror발생
+    # if category is None:
+    #     raise KeyError(f"'category' is None")
     
     # 비동기 이벤트루프 생성
     loop = asyncio.get_event_loop()
-    # 비동기 함수 수행
-    loop.run_until_complete(run(site, main_category, sub_category, date))
-    # 비동기 이벤트루프 종료
+    for date in date_list:
+        # 프로그램 시작 시간
+        start = time.time()
+        for category in category_list:
+            print(date, category)
+            if category in cate_config[site]:
+                main_category = list(cate_config[site][category].keys())[0]
+                sub_category = cate_config[site][category][main_category]
+            else:
+                raise KeyError(f"expect 'politics', 'economy', 'international', 'society', 'culture', 'entertainment', 'sports', but got {category}")
+
+            # 비동기 함수 수행
+            loop.run_until_complete(run(site, main_category, sub_category, date))
+            # 비동기 이벤트루프 종료
+            
+            # 프로그램 종료시간
+            end = time.time()
+            
+        # 프로그램 수행시간
+        running_time = end - start
+        print(f"running time: {running_time:.4f}s")
+    
     loop.close()
-    
-    # 프로그램 종료시간
-    end = time.time()
-    
-    # 프로그램 수행시간
-    running_time = end - start
-    print(f"running time: {running_time:.4f}s")
-    
+
 if __name__ == '__main__':
     main()
