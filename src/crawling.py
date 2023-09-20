@@ -225,22 +225,22 @@ async def get_news(site: str, main_category: str, sub_category: str, search_date
                 traceback.print_exc()
                 pass
                 
-    #     try:
-    #         # 뉴스들에 대한 크롤링이 완료되면 리스트에 담긴 모든 뉴스를 bulk형태로 insert 수행함
-    #         await save(table='news', columns=news_columns, data=news)
-    #     except Exception as e:
-    #         print(e)
+        try:
+            # 뉴스들에 대한 크롤링이 완료되면 리스트에 담긴 모든 뉴스를 bulk형태로 insert 수행함
+            await save(table='news', columns=news_columns, data=news)
+        except Exception as e:
+            print(e)
             
-    # # news건수 저장하기 위한 컬럼명, 데이터 셋
-    # news_insert_count_columns = 'main_category,sub_category,news_date,count'
-    # news_insert_count = [{
-    #     'main_category': main_category,
-    #     'sub_category': sub_category,
-    #     'news_date': date,
-    #     'count': count
-    # }]
-    # await save(table='news_insert_count', columns=news_insert_count_columns, data=news_insert_count)
-    # print(main_category, sub_category, count)
+    # news건수 저장하기 위한 컬럼명, 데이터 셋
+    news_insert_count_columns = 'main_category,sub_category,news_date,count'
+    news_insert_count = [{
+        'main_category': main_category,
+        'sub_category': sub_category,
+        'news_date': search_date,
+        'count': count
+    }]
+    await save(table='news_insert_count', columns=news_insert_count_columns, data=news_insert_count)
+    print(main_category, sub_category, count)
 
             
             
