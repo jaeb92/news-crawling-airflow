@@ -14,6 +14,22 @@ hankook:
   sports:
     Sports: [HG01, HG02, HG03, HG04, HG05, HG06, HG99]
 
+donga:
+  politics:
+    Politics: [CWD, NA, NK, Dip, Admin]
+  economy:
+    Economy: [CEO, RE, Money, It/List, Car]
+  international:
+    Inter: [Asia, USA, EU, China, Japan]
+  society:
+    Society: [Series/70030000000919, Series/70030000000923, Edu, Labor, Event]
+  culture:
+    Culture: [Liter, Health, Food, Fashion, Travel]
+  entertainment:
+    Entertainment: [TV, Movie, Music]
+  sports:
+    Sports: [Base, Foot, Golf, Basket]
+
 joongang:
   politics:
     politics: [general, assemgov, bluehouse, deplomacy, nk, northkorea]
@@ -28,19 +44,3 @@ joongang:
   entertainment:
   sports:
     sports: [general, baseball, soccer, golf, basketvolley]
-
-donga:
-  politics:
-    Politics: [List, CWD, NA, NK, Dip, Admin]
-  economy:
-    Economy: [List, CEO, RE, Money, It/List, Car]
-  international:
-    Inter: [List, Asia, USA, EU, China, Japan]
-  society:
-    Society: [List, Series/70030000000919, Series/70030000000923, Edu, Labor, Event]
-  culture:
-    Culture: [List, Liter, Health, Food, Fashion, Travel]
-  entertainment:
-    Entertainment: [List, TV, Movie, Music]
-  sports:
-    Sports: [List, Base, Foot, Golf, Basket]

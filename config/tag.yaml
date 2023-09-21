@@ -1,4 +1,74 @@
+hankook:
+  url: https://hankookilbo.com/
+  news_querystring: News
+  date_querystring: ?SortType=&SearchDate=
+  page_querystring: ?Page=
+  tags:
+    list:
+      tag: ul
+      class: board-list column-3
+    list_title:
+      tag: h3
+      class: 
+    detail_url:
+      tag: a
+      attrs: href
+    title: 
+      tag: h2
+      class: title
+    contents:
+      tag: p
+      class: editor-p
+    author:
+      tag: span
+      class: name
+    date:
+      tag: dl
+      class: wrt-text
+    pagination:
+      tag: div
+      class: list-paging
+    image:
+      tag: div
+      class: editor-img-box
+
+donga:
+  url: https://www.donga.com/
+  news_querystring: news
+  date_querystring: ?ymd=
+  page_querystring: 
+  tags:
+    list:
+      tag: div
+      class: etcCon etcPage
+    list_title:
+      tag: span
+      class: tit
+    detail_url:
+      tag: a
+      attrs: href
+    title:
+      tag: h1 
+      class: title
+    contents:
+      tag: div
+      class: article_txt
+    author:
+      tag: span
+      class: name
+    date:
+      tag: span
+      class: date01
+    pagination:
+      tag: div
+      class: page
+    image:
+      tag: div
+      class: articlePhotoC
+
+
 chosun:
+  url: https://hankookilbo.com/News/
   list:
     tag: div
     class: story-card
@@ -50,32 +120,6 @@ joongang:
     tag: div
     class: ab_photo photo_center
   
-donga:
-  list:
-    tag: div
-    class: etcCon etcPage
-  list_title:
-    tag: span
-    class: tit
-  detail_url:
-    tag: a
-    attrs: href
-  title:
-    tag: h1 
-    class: title
-  contents:
-    tag: div
-    class: article_txt
-  author:
-    tag: span
-    class: name
-  date:
-    tag: span
-    class: date01
-  image:
-    tag: div
-    class: articlePhotoC
-
 seoul:
   list:
     tag: div
@@ -179,30 +223,3 @@ hani:
   image:
     tag: figure
     class: img_center
-
-hankook:
-  list:
-    tag: ul
-    class: board-list column-3
-  list_title:
-    tag: h3
-    class: 
-  detail_url:
-    tag: a
-    attrs: href
-  title: 
-    tag: h2
-    class: title
-  contents:
-    tag: p
-    class: editor-p read
-  author:
-    tag: span
-    class: nm
-  date:
-    tag: dl
-    class: wrt-text
-  image:
-    tag: div
-    class: editor-img-box
-
