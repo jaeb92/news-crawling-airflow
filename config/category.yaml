@@ -30,6 +30,39 @@ donga:
   sports:
     Sports: [Base, Foot, Golf, Basket]
 
+
+chosun:
+  politics:
+    politics: [politics_general, blue_house, assembly, north_korea, diplomacy-defense, goverment]
+  economy:
+    economy: [economy_general, science, int_economy, money, real_estate, industry-company, market_trend, startup_story, auto, smb-venture, tech_it, weeklybiz]
+  international:
+    international: [international_general, us, china, japan, asia, europe, mideast-africa-latin, topic]
+  society:
+    national: [national_general, incident, court_law, education, labor, transport-environment, welfare-medical, jobs, people, obituary-personnel, nie, weekend]
+  culture:
+    culture-life: [culture_general, book, movie_review, music_concert, performance-arts, art-gallery, relion-academia, broadcast-media, archi-design, fashion-beauty, travel, food-taste, health, living]
+  entertainment:
+    entertainments: [enter_general, celebrity, broadcast, movie, music, entertain_photo]
+  sports:
+    sports: [sports_general, baseball, world-baseball, football, world-football, basketball, volleyball, golf, sports_photo]
+
+seoul:
+  politics:
+    politics: [president, congress, north, diplomacy]
+  economy:
+    economy: [industry, house, money, car, distribution, trade, it, policy, sbiz_biz]
+  international:
+    internationa: [natEconomy, china, japan, africa, asia, usa, eiurope, internation_topic, glo_insight]
+  society:
+    society: [accident, law, envrionment, Edu, science1, health100, welfare]
+  culture:
+    life: [music, scholaship, exhibition, book, public_culture, religion2, LetsGo, helath2, munhoa, pets_cats, screen, performance]
+  entertainment:
+    entertainment: [broadcastN, movieN, foreigncountryN, musicN, starinterN]
+  sports:
+    sport: [baseball, soccer, golf, basketball, volleyball]
+
 joongang:
   politics:
     politics: [general, assemgov, bluehouse, deplomacy, nk, northkorea]

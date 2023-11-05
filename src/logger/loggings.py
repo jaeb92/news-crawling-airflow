@@ -12,12 +12,14 @@ class LoggerFactory:
         LoggerFactory._LOG = logging.getLogger(log_file)
         
         LOG_PATH = "/home/data/news_crawling/logs"
+        os.makedirs(LOG_PATH, exist_ok=True)
+        
         formatter = "%(asctime)s.%(msecs)04d - %(levelname)s - [%(filename)s:%(lineno)d] %(message)s"
         
         LOG_FILENAME = f"{LOG_PATH}/{log_file}_{datetime.now().strftime('%Y%m%d')}.log"
         rotating_file_handler = RotatingFileHandler(
             filename=LOG_FILENAME,
-            maxBytes=2**20 # 1MB,
+            maxBytes=2**20, # 1MB,
             backupCount=5
         )
         logging.basicConfig(

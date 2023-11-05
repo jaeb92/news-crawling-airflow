@@ -1,8 +1,8 @@
 hankook:
   url: https://hankookilbo.com/
   news_querystring: News
-  date_querystring: ?SortType=&SearchDate=
-  page_querystring: ?Page=
+  date_querystring: SortType=&SearchDate=
+  page_querystring: Page=
   tags:
     list:
       tag: ul
@@ -35,8 +35,8 @@ hankook:
 donga:
   url: https://www.donga.com/
   news_querystring: news
-  date_querystring: ?ymd=
-  page_querystring: 
+  date_querystring: ymd=
+  page_querystring: p=
   tags:
     list:
       tag: div
@@ -66,33 +66,39 @@ donga:
       tag: div
       class: articlePhotoC
 
-
 chosun:
-  url: https://hankookilbo.com/News/
-  list:
-    tag: div
-    class: story-card
-  list_title:
-    tag: a
-    class: story-card__headline
-  detail_url:
-    tag: a
-    attrs: href
-  title: 
-    tag: h1
-    class: article-header__headline
-  contents:
-    tag: section
-    class: article-body
-  author:
-    tag: span
-    class: article-byline__author
-  date:
-    tag: span
-    class: inputDate
-  image:
-    tag: img
-    class: box--display-block cover
+  url: https://www.chosun.com/
+  news_querystring: 
+  date_querystring: 
+  page_querystring: page=
+  tags:
+    list:
+      tag: div
+      class: story-card-block
+    list_title:
+      tag: a
+      class: story-card__headline
+    detail_url:
+      tag: a
+      attrs: href
+    title: 
+      tag: h1
+      class: article-header__headline
+    contents:
+      tag: section
+      class: article-body
+    author:
+      tag: span
+      class: article-byline__author
+    date:
+      tag: span
+      class: inputDate
+    pagination:
+      tag:
+      class:
+    image:
+      tag: img
+      class: box--display-block cover
     
 joongang:
   list:
@@ -120,32 +126,6 @@ joongang:
     tag: div
     class: ab_photo photo_center
   
-seoul:
-  list:
-    tag: div
-    class: S20_list_area 
-  list_title:
-    tag: div
-    class: tit lineclamp2
-  detail_url:
-    tag: a
-    attrs: href
-  title:
-    tag: h1 
-    class: atit2
-  contents:
-    tag: div
-    class: S20_v_article
-  author:
-    tag: span
-    class: name
-  date:
-    tag: span
-    class: w_date
-  image:
-    tag: div
-    class: v_photo
-
 khan:
   list:
     tag: div
@@ -223,3 +203,38 @@ hani:
   image:
     tag: figure
     class: img_center
+
+
+seoul:
+  url: https://www.seoul.co.kr/
+  news_querystring: news/newsList.php
+  date_querystring: date=
+  page_querystring: 
+  tags:
+    list:
+      tag: div
+      class: S20_list_area 
+    list_title:
+      tag: div
+      class: tit lineclamp2
+    detail_url:
+      tag: a
+      attrs: href
+    title:
+      tag: h1 
+      class: atit2
+    contents:
+      tag: div
+      class: S20_v_article
+    author:
+      tag: span
+      class: name
+    date:
+      tag: span
+      class: w_date
+    pagination:
+      tag:
+      class:
+    image:
+      tag: div
+      class: v_photo

@@ -1,5 +1,6 @@
-host: 172.21.0.9
+host: 172.23.0.2
 port: 5432
 user: airflow
 password: airflow
 database: news
+driver: org.postgresql.Driver
